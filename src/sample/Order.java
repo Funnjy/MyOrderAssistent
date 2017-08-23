@@ -50,6 +50,38 @@ public class Order {
         this.customerEmail = "No customer e-mail";
     }
 
+    public String getItemName() {
+        return itemName;
+    }
+
+    public Double getQuantity() {
+        return quantity;
+    }
+
+    public LocalDate getOrderDate() {
+        return orderDate;
+    }
+
+    public LocalDate getDueDate() {
+        return dueDate;
+    }
+
+    public String getCustomerName() {
+        return customerName;
+    }
+
+    public int getCustomerPhoneNumber() {
+        return customerPhoneNumber;
+    }
+
+    public String getCustomerEmail() {
+        return customerEmail;
+    }
+
+    public String getWorkerName() {
+        return workerName;
+    }
+
     @Override
     public String toString() {
         return "" + customerName +
