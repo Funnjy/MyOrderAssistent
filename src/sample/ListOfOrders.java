@@ -19,6 +19,10 @@ public class ListOfOrders {
         return storeName;
     }
 
+    public List<Order> getOrders() {
+        return orders;
+    }
+
     public boolean addNewOrder(Order order){
         if (order == null){
             return false;
@@ -27,6 +31,7 @@ public class ListOfOrders {
         }
         return true;
     }
+
 
     @Override
     public String toString() {

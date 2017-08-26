@@ -8,8 +8,10 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.List;
 
-public class Controller{
+public class Controller {
 
     @FXML
     private TextField itemName;
@@ -35,41 +37,43 @@ public class Controller{
     private ListOfOrders orderList = new ListOfOrders("Meny Holmlia");
 
 
-    public void onButtonClicked() throws IOException{
-
-//        if (itemName.getText().isEmpty() || quantity.getText().isEmpty() || phoneNumber.getText().isEmpty() || email.getText().isEmpty() || customerName.getText().isEmpty()){
-//            error.setText("One or more fields is empty");
-//        }else {
-//            int number = Integer.parseInt(phoneNumber.getText());
-//            double qunt = Double.parseDouble(quantity.getText());
-//            Order o = new Order(itemName.getText(), qunt, dueDate.getValue(), customerName.getText(),number , email.getText(), "Anton");
-//
-//            Path path = Paths.get("testStore.txt");
-//            BufferedWriter bw = Files.newBufferedWriter(path);
-//            try{
-//                Order item = o;
-//                bw.write(item.toString());
-//                bw.newLine();
-//            } finally {
-//                if (bw != null){
-//                    bw.close();
-//                }
-//            }
-
-
+    public void onButtonClicked() throws IOException {
         int number = Integer.parseInt(phoneNumber.getText());
         double qunt = Double.parseDouble(quantity.getText());
-        Order o = new Order(itemName.getText(), qunt, dueDate.getValue(), customerName.getText(),number , email.getText(), "Anton");
+        Order o = new Order(itemName.getText(), qunt, dueDate.getValue(), customerName.getText(), number, email.getText(), "Anton");
 
         orderList.addNewOrder(o);
 
         System.out.println(orderList.toString());
-        //System.out.println(o.toString());
-            itemName.clear();
-            quantity.clear();
-            phoneNumber.clear();
-            email.clear();
-            customerName.clear();
-        }
-
+        clearTextFields();
     }
+
+    public void saveToFile() throws IOException {
+
+
+        Path path = Paths.get("testStore.txt");
+        BufferedWriter bw = Files.newBufferedWriter(path);
+        try {
+            List<Order> o;
+            o = orderList.getOrders();
+            Order item;
+            for (int i = 0; i < o.size(); i++) {
+                item = o.get(i);
+                bw.write(item.toString());
+                bw.newLine();
+            }
+        } finally {
+            if (bw != null) {
+                bw.close();
+            }
+        }
+    }
+
+    public void clearTextFields() {
+        itemName.clear();
+        quantity.clear();
+        phoneNumber.clear();
+        email.clear();
+        customerName.clear();
+    }
+}
