@@ -32,27 +32,39 @@ public class Controller{
     @FXML
     private Label error;
 
+    private ListOfOrders orderList = new ListOfOrders("Meny Holmlia");
+
+
     public void onButtonClicked() throws IOException{
-        if (itemName.getText().isEmpty() || quantity.getText().isEmpty() || phoneNumber.getText().isEmpty() || email.getText().isEmpty() || customerName.getText().isEmpty()){
-            error.setText("One or more fields is empty");
-        }else {
-            int number = Integer.parseInt(phoneNumber.getText());
-            double qunt = Double.parseDouble(quantity.getText());
-            Order o = new Order(itemName.getText(), qunt, dueDate.getValue(), customerName.getText(),number , email.getText(), "Anton");
 
-            Path path = Paths.get("testStore.txt");
-            BufferedWriter bw = Files.newBufferedWriter(path);
-            try{
-                Order item = o;
-                bw.write(item.toString());
-                bw.newLine();
-            } finally {
-                if (bw != null){
-                    bw.close();
-                }
-            }
+//        if (itemName.getText().isEmpty() || quantity.getText().isEmpty() || phoneNumber.getText().isEmpty() || email.getText().isEmpty() || customerName.getText().isEmpty()){
+//            error.setText("One or more fields is empty");
+//        }else {
+//            int number = Integer.parseInt(phoneNumber.getText());
+//            double qunt = Double.parseDouble(quantity.getText());
+//            Order o = new Order(itemName.getText(), qunt, dueDate.getValue(), customerName.getText(),number , email.getText(), "Anton");
+//
+//            Path path = Paths.get("testStore.txt");
+//            BufferedWriter bw = Files.newBufferedWriter(path);
+//            try{
+//                Order item = o;
+//                bw.write(item.toString());
+//                bw.newLine();
+//            } finally {
+//                if (bw != null){
+//                    bw.close();
+//                }
+//            }
 
-            System.out.println(o.toString());
+
+        int number = Integer.parseInt(phoneNumber.getText());
+        double qunt = Double.parseDouble(quantity.getText());
+        Order o = new Order(itemName.getText(), qunt, dueDate.getValue(), customerName.getText(),number , email.getText(), "Anton");
+
+        orderList.addNewOrder(o);
+
+        System.out.println(orderList.toString());
+        //System.out.println(o.toString());
             itemName.clear();
             quantity.clear();
             phoneNumber.clear();
@@ -61,53 +73,3 @@ public class Controller{
         }
 
     }
-
-//    public void storeItems() throws IOException{
-//        Path path = Paths.get("testStore.txt");
-//        BufferedWriter bw = Files.newBufferedWriter(path);
-//        try{
-//            Order item =
-//        } finally {
-//            if (bw != null){
-//                bw.close();
-//            }
-//        }
-//    }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-}
