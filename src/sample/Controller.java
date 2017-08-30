@@ -8,7 +8,6 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.ArrayList;
 import java.util.List;
 
 public class Controller {
@@ -49,8 +48,6 @@ public class Controller {
     }
 
     public void saveToFile() throws IOException {
-
-
         Path path = Paths.get("testStore.txt");
         BufferedWriter bw = Files.newBufferedWriter(path);
         try {
@@ -69,11 +66,21 @@ public class Controller {
         }
     }
 
-    public void clearTextFields() {
+    private void clearTextFields() {
         itemName.clear();
         quantity.clear();
         phoneNumber.clear();
         email.clear();
         customerName.clear();
     }
+
+    private boolean isDouble(){
+        try {
+
+        }catch (NumberFormatException e){
+
+        }
+        return false;
+    }
+
 }
