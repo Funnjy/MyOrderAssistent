@@ -37,14 +37,20 @@ public class Controller {
 
 
     public void onButtonClicked() throws IOException {
-        int number = Integer.parseInt(phoneNumber.getText());
-        double qunt = Double.parseDouble(quantity.getText());
-        Order o = new Order(itemName.getText(), qunt, dueDate.getValue(), customerName.getText(), number, email.getText(), "Anton");
+        if (textFieldsValidation()){
+            int number = Integer.parseInt(phoneNumber.getText());
+            double qunt = Double.parseDouble(quantity.getText());
+            Order o = new Order(itemName.getText(), qunt, dueDate.getValue(), customerName.getText(), number, email.getText(), "Anton");
 
-        orderList.addNewOrder(o);
+            orderList.addNewOrder(o);
 
-        System.out.println(orderList.toString());
-        clearTextFields();
+            System.out.println(orderList.toString());
+            clearTextFields();
+        }
+        else{
+
+        }
+
     }
 
     public void saveToFile() throws IOException {
@@ -74,13 +80,17 @@ public class Controller {
         customerName.clear();
     }
 
-    private boolean isDouble(){
-        try {
+    private boolean textFieldsValidation(){
+        double qunt = Double.parseDouble(quantity.getText());
 
-        }catch (NumberFormatException e){
 
-        }
-        return false;
+        //Validating itemName field
+        if (!itemName.getText().matches("[a-zA-Z]+")){
+            error.setText("Invalid Item Name");
+            return false;
+        }else if ()
+
+        return true;
     }
 
 }
