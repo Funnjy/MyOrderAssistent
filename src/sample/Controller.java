@@ -89,7 +89,22 @@ public class Controller {
             error.setText("Invalid quantity number");
             return false;
         }
-
+        if (!phoneNumber.getText().matches("\\d{8}")){  //Only 8 digit number allowed
+            error.setText("Invalid phone number");
+            return false;
+        }
+        if (dueDate.getValue()== null){ //User must chose date
+            error.setText("Invalid date");
+            return false;
+        }
+        if (!customerName.getText().matches("[a-zA-Z]+")){   //Only letters
+            error.setText("Invalid customer Name");
+            return false;
+        }
+        if (!email.getText().matches("^([_a-zA-Z0-9-]+(\\.[_a-zA-Z0-9-]+)*@[a-zA-Z0-9-]+(\\.[a-zA-Z0-9-]+)*(\\.[a-zA-Z]{1,6}))?$")){
+            error.setText("Invalid email");
+            return false;
+        }
         return true;
     }
 
