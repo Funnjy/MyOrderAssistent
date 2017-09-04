@@ -37,7 +37,7 @@ public class Controller {
 
 
     public void onButtonClicked() throws IOException {
-        if (textFieldsValidation()){
+        if (textFieldsValidation()) {
             int number = Integer.parseInt(phoneNumber.getText());
             double qunt = Double.parseDouble(quantity.getText());
             Order o = new Order(itemName.getText(), qunt, dueDate.getValue(), customerName.getText(), number, email.getText(), "Anton");
@@ -46,11 +46,9 @@ public class Controller {
 
             System.out.println(orderList.toString());
             clearTextFields();
-        }
-        else{
+        } else {
 
         }
-
     }
 
     public void saveToFile() throws IOException {
@@ -80,15 +78,17 @@ public class Controller {
         customerName.clear();
     }
 
-    private boolean textFieldsValidation(){
-        double qunt = Double.parseDouble(quantity.getText());
-
+    private boolean textFieldsValidation() {
 
         //Validating itemName field
-        if (!itemName.getText().matches("[a-zA-Z]+")){
+        if (!itemName.getText().matches("[a-zA-Z]+")) {  //Only Text allowed
             error.setText("Invalid Item Name");
             return false;
-        }else if ()
+        }
+        if (!quantity.getText().matches("[0-9]+")) {   //Only int allowed
+            error.setText("Invalid quantity number");
+            return false;
+        }
 
         return true;
     }
