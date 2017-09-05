@@ -31,11 +31,16 @@ public class Controller {
     private TextField customerName;
 
     @FXML
+    private ListView orderListView;
+
+    @FXML
     private Label error;
 
     private ListOfOrders orderList = new ListOfOrders("Meny Holmlia");
 
+    public void initialize(){
 
+    }
     public void onButtonClicked() throws IOException {
         if (textFieldsValidation()) {
             int number = Integer.parseInt(phoneNumber.getText());
