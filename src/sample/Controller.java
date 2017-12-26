@@ -1,9 +1,11 @@
 package sample;
 
+import com.sun.org.apache.xpath.internal.operations.Or;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 
 import java.io.BufferedWriter;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -57,20 +59,15 @@ public class Controller {
     }
 
     public void saveToFile() throws IOException {
+
         Path path = Paths.get("testStore.txt");
-        BufferedWriter bw = Files.newBufferedWriter(path);
-        try {
+        try(FileWriter file = new FileWriter(String.valueOf(path))){
             List<Order> o;
             o = orderList.getOrders();
             Order item;
             for (int i = 0; i < o.size(); i++) {
                 item = o.get(i);
-                bw.write(item.toString());
-                bw.newLine();
-            }
-        } finally {
-            if (bw != null) {
-                bw.close();
+                file.write(item.toString() + "\n");
             }
         }
     }
